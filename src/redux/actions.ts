@@ -1,5 +1,3 @@
-// src/redux/actions.ts
-
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import {
@@ -13,7 +11,6 @@ import {
   FETCH_CARTS_FAILURE
 } from './actionTypes';
 
-// Interfaces for Products and Carts
 interface Product {
   id: number;
   title: string;
@@ -34,7 +31,6 @@ interface CartItem {
   quantity: number;
 }
 
-// Action Types
 interface FetchProductsRequestAction {
   type: typeof FETCH_PRODUCTS_REQUEST;
 }
@@ -73,7 +69,6 @@ interface FetchCartsFailureAction {
   payload: string;
 }
 
-// Combined Action Types
 export type ProductActionTypes =
   | FetchProductsRequestAction
   | FetchProductsSuccessAction
@@ -86,7 +81,6 @@ export type CartActionTypes =
   | FetchCartsSuccessAction
   | FetchCartsFailureAction;
 
-// Action Creators
 export const fetchProducts = () => async (dispatch: Dispatch<ProductActionTypes>) => {
   dispatch({ type: FETCH_PRODUCTS_REQUEST });
   try {
