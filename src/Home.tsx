@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchProducts } from "./redux/actions";
 import { RootState } from "./redux/store";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from './redux/hooks'; 
+import { produce } from 'immer';
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products
   );
@@ -35,7 +37,7 @@ const Home: React.FC = () => {
             >
               <Link to={`/product/${product.id}`}>
                 <img
-                  // Placeholder image URL
+                  src={product.thumbnail}
                   alt={product.title}
                   className="h-48 w-full object-cover mb-4 rounded"
                 />

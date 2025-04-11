@@ -1,12 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { addToCart } from "./redux/actions";
+import { useAppDispatch } from './redux/hooks';
 
 const ProductDetail: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
-  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
+  const dispatch = useAppDispatch();
+
   const product = useSelector((state: RootState) =>
     state.products.products.find((p) => p.id === Number(productId))
   );
@@ -17,14 +20,22 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-6 text-blue-500 hover:text-blue-700 underline"
+      >
+        ← Back
+      </button>
+
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        
           <img
-            // Placeholder image URL
+            src={product.thumbnail}
             alt={product.title}
-            className="w-full h-64 rounded shadow-lg"
+            className="w-auto h-64 rounded shadow-lg"
           />
-        </div>
+        
         <div>
           <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
           <p className="text-gray-700 mb-4">{product.description}</p>

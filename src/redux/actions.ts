@@ -16,6 +16,7 @@ interface Product {
   title: string;
   description: string;
   price: number;
+  thumbnail:string;
 }
 
 interface Cart {
