@@ -4,7 +4,6 @@ import { fetchProducts } from "./redux/actions";
 import { RootState } from "./redux/store";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from './redux/hooks'; 
-import { produce } from 'immer';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
