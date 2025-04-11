@@ -1,5 +1,7 @@
 import { produce } from "immer";
 import { ProductActionTypes, CartActionTypes } from "./actions";
+import { Draft } from 'immer';
+
 import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
@@ -63,10 +65,10 @@ const initialCartState: CartState = {
 };
 
 const productsReducer = (
-  state = initialProductsState,
+  state: ProductsState = initialProductsState,
   action: ProductActionTypes
 ): ProductsState =>
-  produce(state, (draft) => {
+  produce(state, (draft: Draft<ProductsState>) => {
     switch (action.type) {
       case FETCH_PRODUCTS_REQUEST:
         draft.loading = true;
@@ -84,10 +86,10 @@ const productsReducer = (
   });
 
 const cartReducer = (
-  state = initialCartState,
+  state: CartState = initialCartState,
   action: CartActionTypes
 ): CartState =>
-  produce(state, (draft) => {
+  produce(state, (draft: Draft<CartState>) => {
     switch (action.type) {
       case ADD_TO_CART:
         const itemIndex = draft.items.findIndex(
